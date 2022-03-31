@@ -86,9 +86,14 @@ async function consultarAPI(){
 
      mostrarSpinner();
      
-     const respuesta = await fetch(url);
-     const cotizacion = await respuesta.json();
-     mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
+     try {
+          const respuesta = await fetch(url);
+          const cotizacion = await respuesta.json();
+          mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
+     } catch (error) {
+          console.log(error);
+     }
+     
 };
 
 function mostrarCotizacionHTML(cotizacion){
